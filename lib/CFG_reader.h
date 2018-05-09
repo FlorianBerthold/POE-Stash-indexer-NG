@@ -21,14 +21,16 @@
 #include <iostream>
 
 class CFG_reader {
-    public:
-                                           CFG_reader( const std::string path );
-        std::string                        get( const std::string field );
-        std::map<std::string, std::string> fields; // holds parsed values
-    private:
-        const std::regex COMMENT_RE    = std::regex( "^#.*" );
-        const std::regex DEFINITION_RE = 
-            std::regex( "([a-zA-Z_]+)\\s*=\\s*([a-zA-Z0-9_:/. \\-]+)" );
+public:
+    CFG_reader(const std::string path);
+
+    std::string get(const std::string field);
+
+    std::map<std::string, std::string> fields; // holds parsed values
+private:
+    const std::regex COMMENT_RE = std::regex("^#.*");
+    const std::regex DEFINITION_RE =
+            std::regex("([a-zA-Z_]+)\\s*=\\s*([a-zA-Z0-9_:/. \\-]+)");
 };
 
 #endif /* _CFG_READER_H_ */

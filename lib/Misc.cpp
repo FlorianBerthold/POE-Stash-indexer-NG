@@ -19,8 +19,8 @@
  * @return UNIX timestamp in milliseconds 
  */
 std::chrono::milliseconds get_current_timestamp() {
-    return std::chrono::duration_cast< std::chrono::milliseconds >(
-        std::chrono::system_clock::now().time_since_epoch()
+    return std::chrono::duration_cast<std::chrono::milliseconds>(
+            std::chrono::system_clock::now().time_since_epoch()
     );
 }
 
@@ -45,6 +45,7 @@ std::string date() {
     return ss.str();
 }
 #else
+
 std::string date() {
     auto now = std::chrono::system_clock::now();
     auto in_time_t = std::chrono::system_clock::to_time_t(now);
@@ -53,6 +54,7 @@ std::string date() {
     ss << std::put_time(std::localtime(&in_time_t), "%Y-%m-%d %X");
     return ss.str();
 }
+
 #endif
 
 /**
@@ -62,12 +64,12 @@ std::string date() {
  * @return Modified original string 
  */
 // http://stackoverflow.com/questions/4643512/replace-substring-with-another-substring-c
-std::string replace_string( std::string subject, const std::string& search,
-                            const std::string& replace) {
+std::string replace_string(std::string subject, const std::string &search,
+                           const std::string &replace) {
     size_t pos = 0;
-    while (( pos = subject.find( search, pos )) != std::string::npos ) {
-         subject.replace( pos, search.length(), replace );
-         pos += replace.length();
+    while ((pos = subject.find(search, pos)) != std::string::npos) {
+        subject.replace(pos, search.length(), replace);
+        pos += replace.length();
     }
     return subject;
 }
@@ -79,22 +81,22 @@ std::string replace_string( std::string subject, const std::string& search,
  * @return Current working directory 
  */
 std::string get_current_dir() {
-    char * cwd;
-    cwd = (char*) malloc( FILENAME_MAX * sizeof( char ));
-    getcwd( cwd, FILENAME_MAX );
-    return std::string( cwd );
+    char *cwd;
+    cwd = (char *) malloc(FILENAME_MAX * sizeof(char));
+    getcwd(cwd, FILENAME_MAX);
+    return std::string(cwd);
 }
 
 // http://stackoverflow.com/questions/440133/how-do-i-create-a-random-alpha-numeric-string-in-c
-std::string random_id( const int len ) {
+std::string random_id(const int len) {
     std::stringstream str;
     static const char alphanum[] =
-        "0123456789"
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        "abcdefghijklmnopqrstuvwxyz";
+            "0123456789"
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            "abcdefghijklmnopqrstuvwxyz";
 
-    for ( int i = 0 ; i < len ; ++i ) {
-        str << alphanum[rand() % ( sizeof( alphanum ) - 1 )];
+    for (int i = 0; i < len; ++i) {
+        str << alphanum[rand() % (sizeof(alphanum) - 1)];
     }
 
     return str.str();

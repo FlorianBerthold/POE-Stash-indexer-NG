@@ -18,13 +18,13 @@
  * @param Path to CFG file
  * @return Nothing 
  */
-CFG_reader::CFG_reader( const std::string path ) {
-    std::ifstream infile( path );
+CFG_reader::CFG_reader(const std::string path) {
+    std::ifstream infile(path);
     std::string line;
     std::smatch match;
-    while ( std::getline( infile, line )) {
-        if ( std::regex_match( line, CFG_reader::COMMENT_RE )) {
-        } else if ( std::regex_search( line, match, CFG_reader::DEFINITION_RE )) {
+    while (std::getline(infile, line)) {
+        if (std::regex_match(line, CFG_reader::COMMENT_RE)) {
+        } else if (std::regex_search(line, match, CFG_reader::DEFINITION_RE)) {
             this->fields[match[1]] = match[2];
         } else {
             std::cout << "Invalid line: " << line << std::endl;
@@ -38,6 +38,6 @@ CFG_reader::CFG_reader( const std::string path ) {
  * @param Field to fetch
  * @return Value associated to input field 
  */
-std::string CFG_reader::get( const std::string field ) {
-    return this->fields.find( field )->second;
+std::string CFG_reader::get(const std::string field) {
+    return this->fields.find(field)->second;
 }

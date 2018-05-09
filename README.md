@@ -74,6 +74,9 @@ On MacOS, download [Mysql-c++-connector](https://dev.mysql.com/downloads/connect
 ## Ubuntu
 On Ubuntu, install the following packages using `apt-get install libcurl4-gnutls-dev libcurlpp-dev libmysqlcppconn-dev`. You may have to edit your MySQL configuration file (**my.cnf**) to authorize the LOAD DATA INFILE statement. Next, download [RapidJSON](http://rapidjson.org/) and copy the content of `include` to `/usr/local/include`.
 
+## Debian
+On Debian Stretch, you need to have Debian-Backports enabled. Install the following packages using `apt install libcurl4-gnutls-dev libcurl3 libmysqlcppconn-dev rapidjson-dev`. You may have to edit your MySQL configuration file (**my.cnf**) to authorize the LOAD DATA INFILE statement.
+
 # Compilation and setup
 
 When all dependencies have been installed, open up a terminal and change directory to the indexer one and type `make` to generate the binary. If all dependencies have been found, the code should now be compiled. Import the **schema.sql** DB scheme in your MySQL installation. The last step is to edit the **config.cfg** file to put the right credentials in.
